@@ -16,11 +16,7 @@ int     Vehicle::getMileage() const   { return mileage; }
 
 ostream& operator<<(ostream& output, Vehicle& v)
 {
-    ostringstream make_model;
-    make_model << v.make << " " << v.model;
-
-    output << "\t" << setw(7) << v.colour << " " << v.year << " " << setw(17);
-    output << make_model.str() << " (" << v.mileage << "km)" << endl;
+    output << v.toString();
   
     return output;
 }

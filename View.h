@@ -13,8 +13,11 @@ class View {
         void pause() const;
         void promptUserInfo(string&, string&, string&, string&);
         void promptUserId(int&);
+        void promptVehicleType(int&);
         void displayInvalid();
-        void promptVehicleInfo(string&, string&, string&, int&, int&);
+        void promptVehicleInfo(string&, string&, string&, int&, int&);          // Car
+        void promptVehicleInfo(string&, string&, string&, int&, int&, int&);    // Truck
+        void promptVehicleInfo(string&, string&, string&, int&, int&, string&);   // Motorcyle
         void promptVehicle(int, int&);
         void printMechanics(LinkedList<Mechanic>&) const;
     private:

@@ -9,6 +9,7 @@ class ShopController {
 
     public:
         ShopController();
+        ~ShopController();
         void launch();
     private:
         Shop mechanicShop;

@@ -47,6 +47,7 @@ void View::promptUserInfo(string &fname, string &lname, string &address, string 
     cout<<endl;
 }
 
+// Car info
 void View::promptVehicleInfo(string &make, string &model, string &colour, 
                                 int &year, int &mileage) {
     cout << "\nMake: ";
@@ -62,9 +63,51 @@ void View::promptVehicleInfo(string &make, string &model, string &colour,
     cout<<endl;
 }
 
+// Truck info
+void View::promptVehicleInfo(string &make, string &model, string &colour, 
+                                int &year, int &mileage, int& axles) {
+    cout << "\nMake: ";
+    getline(cin, make);
+    cout << "Model: ";
+    getline(cin, model);
+    cout << "Colour: ";
+    getline(cin, colour);
+    cout << "Year: ";
+    year = readInt();
+    cout << "Mileage: ";
+    mileage = readInt();
+    cout << "Axles: ";
+    axles = readInt();
+    cout<<endl;
+}
+
+// Motorcyle info
+void View::promptVehicleInfo(string &make, string &model, string &colour, 
+                                int &year, int &mileage, string& side) {
+    cout << "\nMake: ";
+    getline(cin, make);
+    cout << "Model: ";
+    getline(cin, model);
+    cout << "Colour: ";
+    getline(cin, colour);
+    cout << "Year: ";
+    year = readInt();
+    cout << "Mileage: ";
+    mileage = readInt();
+    cout << "Sidecar (y/n): ";
+    getline(cin, side);
+    cout<<endl;
+}
+
 void View::promptUserId(int &id) {
     cout << "Customer ID: ";
     id = readInt();
+    cout<<endl;
+}
+
+void View::promptVehicleType(int &type) {
+    cout << "Vehicle Type: (1: Car, 2: Truck, 3: Motorcyle)";
+    type = readInt();
     cout<<endl;
 }
 

@@ -7,6 +7,10 @@ ShopController::ShopController() {
 
 }
 
+ShopController::~ShopController() {
+    delete factory;
+}
+
 void ShopController::launch() {
 
     int choice;
@@ -28,10 +32,33 @@ void ShopController::launch() {
             view.promptUserId(id);
             Customer* cust = mechanicShop.getCustomer(id);
             if (cust != 0) {
-                string make, model, colour;
-                int year, milage;
-                view.promptVehicleInfo(make, model, colour, year, milage);
-                (*cust) += factory->create(make, model, colour, year, milage);
+                int type;
+                view.promptVehicleType(type);
+                if (type == 1) {
+                    // Create car
+                    string make, model, colour;
+                    int year, milage;
+                    view.promptVehicleInfo(make, model, colour, year, milage);
+                    (*cust) += factory->create(make, model, colour, year, milage);
+                } else if (type == 2) {
+                    // Create truck
+                    string make, model, colour;
+                    int year, milage, axles;
+                    view.promptVehicleInfo(make, model, colour, year, milage, axles);
+                    (*cust) += factory->create(make, model, colour, year, milage, axles);
+                } else if(type == 3) {
+                    // Create motorcycle
+                    string make, model, colour, sideChoice;
+                    int year, milage;
+                    bool side;
+                    view.promptVehicleInfo(make, model, colour, year, milage, sideChoice);
+                    if (sideChoice == "y") side = true;
+                    else if (sideChoice == "n") side = false;
+                    else view.displayInvalid();
+                    (*cust) += factory->create(make, model, colour, year, milage, side);
+                } else {
+                    view.displayInvalid();
+                }
             } else {
                 view.displayInvalid();
             }
@@ -85,6 +112,8 @@ void ShopController::initShop() {
                                         "(613)728-9568");
     newVehicle = factory->create("Ford", "Fiesta", "Red", 2007, 100000);
     (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Ford", "F150", "Black", 2017, 1000, 3);
+    (*newCustomer) += newVehicle;
     mechanicShop += newCustomer;
 
     
@@ -101,12 +130,16 @@ void ShopController::initShop() {
     (*newCustomer) += newVehicle;
     newVehicle = factory->create("Volkswagon", "Beetle", "White", 1972, 5000);
     (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Suzuki", "Cruiser", "Green", 2000, 5000, true);
+    (*newCustomer) += newVehicle;
     mechanicShop += newCustomer;
 
 
     newCustomer = new Customer("Ethan", "Esser", "245 Rideau St.", 
                                         "(613)234-9677");
     newVehicle = factory->create("Toyota", "Camery", "Black", 2010, 50000);
+    (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Mack", "Granite", "Red", 2000, 500000, 8);
     (*newCustomer) += newVehicle;
     mechanicShop += newCustomer;
     
@@ -118,6 +151,10 @@ void ShopController::initShop() {
     newVehicle = factory->create("Toyota", "Rav4", "Gold", 2015, 20000);
     (*newCustomer) += newVehicle;
     newVehicle = factory->create("Toyota", "Prius", "Blue", 2017, 10000);
+    (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Kawasaki", "Ninja", "Blue", 2018, 100, false);
+    (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Kawasaki", "z650", "Grey", 2014, false);
     (*newCustomer) += newVehicle;
     mechanicShop += newCustomer;
 
@@ -131,6 +168,8 @@ void ShopController::initShop() {
     newVehicle = factory->create("GM", "Malibu", "Red", 2015, 20000);
     (*newCustomer) += newVehicle;
     newVehicle = factory->create("GM", "Trailblazer", "Orange", 2012, 90000);
+    (*newCustomer) += newVehicle;
+    newVehicle = factory->create("Harley", "Touring", "Black", 2006, 8000, true);
     (*newCustomer) += newVehicle;
     mechanicShop += newCustomer;
 

@@ -1,4 +1,4 @@
-OBJ = main.o ShopController.o View.o Shop.o Customer.o Vehicle.o Car.o Truck.o VehicleFactory.o Mechanic.o Person.o
+OBJ = main.o ShopController.o View.o Shop.o Customer.o Vehicle.o Car.o Truck.o Motorcycle.o VehicleFactory.o Mechanic.o Person.o
 
 mechanicshop:	$(OBJ)
 	g++ -o mechanicshop $(OBJ)
